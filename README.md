@@ -1,1 +1,1 @@
-# E-E-AI-CA
+# E&E AI CA
