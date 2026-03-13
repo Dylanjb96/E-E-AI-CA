@@ -2,6 +2,7 @@ from src.preprocessing.data_loader import load_dataset, split_dataset
 from src.features.vectorizer import vectorize_text
 from src.data_models.dataset_bundle import DatasetBundle
 from src.models.random_forest_model import RandomForestModel
+from src.evaluation.metrics import evaluate_predictions, print_evaluation
 
 def main():
     df = load_dataset()
@@ -33,7 +34,9 @@ def main():
     model = RandomForestModel()
     model.train(data_bundle)
     predictions = model.predict(data_bundle)
-    model.print_results(data_bundle, predictions)
+
+    results = evaluate_predictions(data_bundle, predictions)
+    print_evaluation(results)
 
 if __name__ == "__main__":
     main()
