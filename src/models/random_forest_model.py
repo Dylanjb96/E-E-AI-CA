@@ -20,13 +20,3 @@ class RandomForestModel(BaseModel):
             "t23": self.model_t23.predict(data_bundle.X_test),
             "t234": self.model_t234.predict(data_bundle.X_test),
         }
-
-    def print_results(self, data_bundle, predictions):
-        acc_t2 = accuracy_score(data_bundle.y_test_t2, predictions["t2"])
-        acc_t23 = accuracy_score(data_bundle.y_test_t23, predictions["t23"])
-        acc_t234 = accuracy_score(data_bundle.y_test_t234, predictions["t234"])
-
-        print("=== Results ===")
-        print(f"Type 2 accuracy: {acc_t2:.4f}")
-        print(f"Type 2 + Type 3 accuracy: {acc_t23:.4f}")
-        print(f"Type 2 + Type 3 + Type 4 accuracy: {acc_t234:.4f}")
