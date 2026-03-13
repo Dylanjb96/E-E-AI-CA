@@ -8,7 +8,3 @@ class BaseModel(ABC):
     @abstractmethod
     def predict(self, data_bundle):
         pass
-
-    @abstractmethod
-    def print_results(self, data_bundle, predictions):
-        pass
