@@ -1,9 +1,42 @@
-from src.preprocessing.data_loader import load_dataset
+from src.preprocessing.data_loader import load_dataset, split_dataset
+from src.features.vectorizer import vectorize_text
+from src.data_models.dataset_bundle import DatasetBundle
+from src.models.random_forest_model import RandomForestModel
+from src.evaluation.metrics import evaluate_predictions, print_evaluation
 
 def main():
     df = load_dataset()
-    print(df.columns.tolist())
-    print(df[[ "target_t2", "target_t23", "target_t234" ]].head())
+
+    (
+        X_train,
+        X_test,
+        y_train_t2,
+        y_test_t2,
+        y_train_t23,
+        y_test_t23,
+        y_train_t234,
+        y_test_t234,
+    ) = split_dataset(df)
+
+    X_train_vec, X_test_vec, _ = vectorize_text(X_train, X_test)
+
+    data_bundle = DatasetBundle(
+        X_train=X_train_vec,
+        X_test=X_test_vec,
+        y_train_t2=y_train_t2,
+        y_test_t2=y_test_t2,
+        y_train_t23=y_train_t23,
+        y_test_t23=y_test_t23,
+        y_train_t234=y_train_t234,
+        y_test_t234=y_test_t234,
+    )
+
+    model = RandomForestModel()
+    model.train(data_bundle)
+    predictions = model.predict(data_bundle)
+
+    results = evaluate_predictions(data_bundle, predictions)
+    print_evaluation(results)
 
 if __name__ == "__main__":
     main()
