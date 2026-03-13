@@ -1,10 +1,16 @@
-DATA_PATH = "data"
+from pathlib import Path
 
-TEXT_COLUMN = ""
-TYPE2_COLUMN = ""
-TYPE3_COLUMN = ""
-TYPE4_COLUMN = ""
+BASE_DIR = Path(__file__).resolve().parent.parent
+DATA_DIR = BASE_DIR / "data"
+
+DATA_PATH = DATA_DIR / "Purchasing.csv"
+
+TEXT_COLUMN = "Interaction content"
+TYPE2_COLUMN = "Type 2"
+TYPE3_COLUMN = "Type 3"
+TYPE4_COLUMN = "Type 4"
 
 TEST_SIZE = 0.2
 RANDOM_STATE = 42
 MIN_CLASS_COUNT = 2
+MAX_FEATURES = 5000
