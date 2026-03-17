@@ -64,3 +64,68 @@ The dataset includes:
 `Type 1` is ignored because it contains only one class in each file, so no classification is needed for that column.
 
 ---
+
+## Implemented Architecture
+
+### Main Components
+- `src/main_controller.py`  
+  Controls the full pipeline.
+
+- `src/config.py`  
+  Stores shared configuration such as dataset path, column names, test split, and feature settings.
+
+- `src/preprocessing/data_loader.py`  
+  Loads the CSV file, cleans the data, handles missing labels, and creates chained targets.
+
+- `src/features/vectorizer.py`  
+  Converts text into TF-IDF feature vectors.
+
+- `src/data_models/dataset_bundle.py`  
+  Encapsulates all train/test inputs and targets in one object.
+
+- `src/models/base_model.py`  
+  Provides the abstract model interface.
+
+- `src/models/random_forest_model.py`  
+  Implements the model-specific training and prediction logic.
+
+- `src/evaluation/metrics.py`  
+  Evaluates predictions and prints the results.
+
+- `tests/test_pipeline.py`  
+  Smoke test for verifying that the pipeline loads and splits correctly.
+
+---
+
+## Current Folder Structure
+
+```text
+CA/
+├─ data/
+│  ├─ Purchasing.csv
+│  └─ AppGallery.csv
+├─ docs/
+├─ src/
+│  ├─ __init__.py
+│  ├─ config.py
+│  ├─ main_controller.py
+│  ├─ preprocessing/
+│  │  ├─ __init__.py
+│  │  └─ data_loader.py
+│  ├─ features/
+│  │  ├─ __init__.py
+│  │  └─ vectorizer.py
+│  ├─ data_models/
+│  │  ├─ __init__.py
+│  │  └─ dataset_bundle.py
+│  ├─ models/
+│  │  ├─ __init__.py
+│  │  ├─ base_model.py
+│  │  └─ random_forest_model.py
+│  └─ evaluation/
+│     ├─ __init__.py
+│     └─ metrics.py
+├─ tests/
+│  └─ test_pipeline.py
+├─ requirements.txt
+└─ README.md
