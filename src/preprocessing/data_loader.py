@@ -1,5 +1,6 @@
 import pandas as pd
 from sklearn.model_selection import train_test_split
+from src.preprocessing.text_cleaner import clean_text
 
 from src.config import (
     DATA_PATH,
@@ -16,7 +17,7 @@ def load_dataset():
     df = pd.read_csv(DATA_PATH)
 
     df = df[[TEXT_COLUMN, TYPE2_COLUMN, TYPE3_COLUMN, TYPE4_COLUMN]].copy()
-    df[TEXT_COLUMN] = df[TEXT_COLUMN].astype(str).str.strip()
+    df[TEXT_COLUMN] = df[TEXT_COLUMN].apply(clean_text)
 
     df[TYPE2_COLUMN] = df[TYPE2_COLUMN].fillna("None")
     df[TYPE3_COLUMN] = df[TYPE3_COLUMN].fillna("None")
