@@ -3,7 +3,8 @@ from pathlib import Path
 BASE_DIR = Path(__file__).resolve().parent.parent
 DATA_DIR = BASE_DIR / "data"
 
-DATA_PATH = DATA_DIR / "Purchasing.csv"
+DATASET_NAME = "Purchasing.csv"
+DATA_PATH = DATA_DIR / DATASET_NAME
 
 TEXT_COLUMN = "Interaction content"
 TYPE2_COLUMN = "Type 2"
