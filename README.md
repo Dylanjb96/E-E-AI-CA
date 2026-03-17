@@ -50,3 +50,17 @@ At the moment, the main implementation is run using:
 - `Purchasing.csv`
   
 `AppGallery.csv` can also be used to demonstrate that the architecture is reusable across datasets with the same structure.
+
+### Dataset Structure
+The dataset includes:
+
+- `Interaction content` → email text input
+- `Type 1`
+- `Type 2`
+- `Type 3`
+- `Type 4`
+
+### Important Note
+`Type 1` is ignored because it contains only one class in each file, so no classification is needed for that column.
+
+---
