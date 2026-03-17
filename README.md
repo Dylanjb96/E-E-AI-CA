@@ -38,3 +38,15 @@ This is implemented using:
 - a smoke test for the pipeline
 
 ---
+
+## Datasets
+The project currently uses the datasets provided in the lecturer skeleton/lab materials:
+
+- `Purchasing.csv`
+- `AppGallery.csv`
+
+At the moment, the main implementation is run using:
+
+- `Purchasing.csv`
+  
+`AppGallery.csv` can also be used to demonstrate that the architecture is reusable across datasets with the same structure.
