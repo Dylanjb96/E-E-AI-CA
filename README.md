@@ -129,3 +129,27 @@ CA/
 │  └─ test_pipeline.py
 ├─ requirements.txt
 └─ README.md
+
+## Command Line Usage / How to Run
+
+Open a terminal in the project root folder, for example:
+
+```bash
+cd C:\Users\Dylan B\Desktop\E&EAI\CA
+
+### Install Dependencies
+```text
+pip install -r requriements.txt
+
+### Run the Main Project
+```text
+python -m src.main_controller
+
+### Run Tests
+```text
+python -m src.main_controller
+
+### Optional switch dataset
+to switch dataset, update DATASET_NAME or DATA_PATH in src/config.py then run again:
+```text
+python -m src.main_controller
