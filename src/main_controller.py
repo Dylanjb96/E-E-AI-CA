@@ -1,9 +1,8 @@
+from src.config import MODEL_NAME
 from src.preprocessing.data_loader import load_dataset, split_dataset
 from src.features.vectorizer import vectorize_text
 from src.data_models.dataset_bundle import DatasetBundle
-from src.models.random_forest_model import RandomForestModel
-from src.models.logistic_regression_model import LogisticRegressionModel
-from src.models.multinomial_nb_model import MultinomialNBModel
+from src.models.model_factory import get_model
 from src.evaluation.metrics import evaluate_predictions, print_evaluation
 
 def main():
@@ -33,25 +32,11 @@ def main():
         y_test_t234=y_test_t234,
     )
 
-    model = RandomForestModel()
+    model = get_model()
     model.train(data_bundle)
     predictions = model.predict(data_bundle)
     results = evaluate_predictions(data_bundle, predictions)
-    print("--- Random Forest ---")
-    print_evaluation(results)
-
-    model = LogisticRegressionModel()
-    model.train(data_bundle)
-    predictions = model.predict(data_bundle)
-    results = evaluate_predictions(data_bundle, predictions)
-    print("--- Logistic Regression ---")
-    print_evaluation(results)
-
-    model = MultinomialNBModel()
-    model.train(data_bundle)
-    predictions = model.predict(data_bundle)
-    results = evaluate_predictions(data_bundle, predictions)
-    print("--- Multinomial NB ---")
+    print("--- " + MODEL_NAME + " ---")
     print_evaluation(results)
 
 if __name__ == "__main__":
