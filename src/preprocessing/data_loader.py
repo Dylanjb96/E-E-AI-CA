@@ -1,5 +1,4 @@
 import pandas as pd
-from sklearn.model_selection import train_test_split
 from src.preprocessing.text_cleaner import clean_text
 
 from src.config import (
@@ -8,8 +7,6 @@ from src.config import (
     TYPE2_COLUMN,
     TYPE3_COLUMN,
     TYPE4_COLUMN,
-    TEST_SIZE,
-    RANDOM_STATE,
     MIN_CLASS_COUNT,
 )
 
@@ -38,19 +35,3 @@ def load_dataset():
     )
 
     return df
-
-def split_dataset(df):
-    X = df[TEXT_COLUMN]
-    y_t2 = df["target_t2"]
-    y_t23 = df["target_t23"]
-    y_t234 = df["target_t234"]
-
-    return train_test_split(
-        X,
-        y_t2,
-        y_t23,
-        y_t234,
-        test_size=TEST_SIZE,
-        random_state=RANDOM_STATE,
-        stratify=y_t2,
-    )
