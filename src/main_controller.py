@@ -1,4 +1,5 @@
-from src.preprocessing.data_loader import load_dataset, split_dataset
+from src.preprocessing.data_loader import load_dataset
+from src.preprocessing.splitter import split_dataset
 from src.features.vectorizer import vectorize_text
 from src.data_models.dataset_bundle import DatasetBundle
 from src.models.random_forest_model import RandomForestModel
