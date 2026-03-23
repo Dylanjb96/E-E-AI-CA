@@ -6,6 +6,8 @@ DATA_DIR = BASE_DIR / "data"
 DATASET_NAME = "Purchasing.csv"
 DATA_PATH = DATA_DIR / DATASET_NAME
 
+MODEL_NAME = "random_forest"
+
 TEXT_COLUMN = "Interaction content"
 TYPE2_COLUMN = "Type 2"
 TYPE3_COLUMN = "Type 3"
