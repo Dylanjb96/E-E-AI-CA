@@ -4,7 +4,8 @@ from src.preprocessing.splitter import split_dataset
 from src.features.vectorizer import vectorize_text
 from src.data_models.dataset_bundle import DatasetBundle
 from src.models.model_factory import get_model
-from src.evaluation.metrics import evaluate_predictions, print_evaluation
+from src.evaluation.metrics import evaluate_predictions
+from src.evaluation.reporting import print_evaluation
 
 def main():
     df = load_dataset()
