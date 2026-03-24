@@ -147,7 +147,7 @@ python -m src.main_controller
 
 ### Run Tests
 ```text
-python -m src.main_controller
+python -m pytest
 
 ### Optional switch dataset
 to switch dataset, update DATASET_NAME or DATA_PATH in src/config.py then run again:
