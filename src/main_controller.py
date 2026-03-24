@@ -4,7 +4,8 @@ from src.preprocessing.splitter import split_dataset
 from src.features.vectorizer import vectorize_text
 from src.data_models.dataset_bundle import DatasetBundle
 from src.models.model_factory import get_model
-from src.evaluation.metrics import evaluate_predictions, print_evaluation
+from src.evaluation.metrics import evaluate_predictions
+from src.evaluation.reporting import print_evaluation
 
 def main():
     df = load_dataset()
@@ -38,7 +39,7 @@ def main():
     predictions = model.predict(data_bundle)
     results = evaluate_predictions(data_bundle, predictions)
     print("--- " + MODEL_NAME + " ---")
-    print_evaluation(results)
+    print_evaluation(results, MODEL_NAME)
 
 if __name__ == "__main__":
     main()
