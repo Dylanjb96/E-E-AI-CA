@@ -39,7 +39,7 @@ def main():
     predictions = model.predict(data_bundle)
     results = evaluate_predictions(data_bundle, predictions)
     print("--- " + MODEL_NAME + " ---")
-    print_evaluation(results)
+    print_evaluation(results, MODEL_NAME)
 
 if __name__ == "__main__":
     main()
