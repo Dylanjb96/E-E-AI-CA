@@ -1,13 +1,10 @@
-from src.config import MODEL_NAME
 from src.preprocessing.data_loader import load_dataset
 from src.preprocessing.splitter import split_dataset
 from src.features.vectorizer import vectorize_text
 from src.data_models.dataset_bundle import DatasetBundle
 from src.models.model_factory import get_model
-from src.evaluation.metrics import evaluate_predictions
-from src.evaluation.reporting import print_evaluation
 
-def main():
+def test_model_can_train_and_predict():
     df = load_dataset()
 
     (
@@ -37,8 +34,11 @@ def main():
     model = get_model()
     model.train(data_bundle)
     predictions = model.predict(data_bundle)
-    results = evaluate_predictions(data_bundle, predictions)
-    print_evaluation(results, MODEL_NAME)
 
-if __name__ == "__main__":
-    main()
+    assert "t2" in predictions
+    assert "t23" in predictions
+    assert "t234" in predictions
+
+    assert len(predictions["t2"]) == len(y_test_t2)
+    assert len(predictions["t23"]) == len(y_test_t23)
+    assert len(predictions["t234"]) == len(y_test_t234)
