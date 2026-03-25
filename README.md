@@ -33,9 +33,11 @@ This is implemented using:
 - TF-IDF vectorization
 - a shared `DatasetBundle` object
 - an abstract model interface
-- a `RandomForestModel` implementation
 - evaluation using separate metrics logic
 - a smoke test for the pipeline
+- a `ChainedMultiOutputModel` strategy
+- model selection via `ModelFactory` (`Random Forest`, `Logistic Regression`, `MultinomialNB`)
+- evaluation using `metrics.py` and `reporting.py`
 
 ---
 
@@ -77,6 +79,12 @@ The dataset includes:
 - `src/preprocessing/data_loader.py`  
   Loads the CSV file, cleans the data, handles missing labels, and creates chained targets.
 
+- `src/preprocessing/text_cleaner.py`  
+  Contains the `clean_text()` function used to normalize the email text.
+
+- `src/preprocessing/splitter.py`  
+  Splits the dataset into train/test sets and returns the chained targets.
+
 - `src/features/vectorizer.py`  
   Converts text into TF-IDF feature vectors.
 
@@ -86,70 +94,94 @@ The dataset includes:
 - `src/models/base_model.py`  
   Provides the abstract model interface.
 
+- `src/models/chained_multioutput_model.py`  
+  Implements `BaseModel` by training three chained estimators (t2, t23, t234).
+
+- `src/models/model_factory.py`  
+  Selects the base algorithm (RF/LR/NB) and returns the configured chained model.
+
 - `src/models/random_forest_model.py`  
-  Implements the model-specific training and prediction logic.
+  Random Forest base model option.
+
+- `src/models/logistic_regression_model.py`  
+  Logistic Regression base model option.
+
+- `src/models/multinomial_nb_model.py`  
+  MultinomialNB base model option.
 
 - `src/evaluation/metrics.py`  
-  Evaluates predictions and prints the results.
+  Computes accuracy for t2, t23, and t234.
+
+- `src/evaluation/reporting.py`  
+  Formats and prints the evaluation results.
 
 - `tests/test_pipeline.py`  
   Smoke test for verifying that the pipeline loads and splits correctly.
+
+- `tests/test_model_predictions.py`  
+  Tests that model prediction outputs are in the expected format.
+
+- `tests/test_targets.py`  
+  Tests that chained targets are created correctly.
 
 ---
 
 ## Current Folder Structure
 
 ```text
-CA/
+E-E-AI-CA/
 ├─ data/
-│  ├─ Purchasing.csv
-│  └─ AppGallery.csv
+│  ├─ AppGallery.csv
+│  └─ Purchasing.csv
 ├─ docs/
+│  ├─ Design Choice 1.png
+│  ├─ Design Choice 2.png
+│  └─ EEAI CA1.docx
 ├─ src/
-│  ├─ __init__.py
 │  ├─ config.py
 │  ├─ main_controller.py
-│  ├─ preprocessing/
-│  │  ├─ __init__.py
-│  │  └─ data_loader.py
-│  ├─ features/
-│  │  ├─ __init__.py
-│  │  └─ vectorizer.py
 │  ├─ data_models/
-│  │  ├─ __init__.py
 │  │  └─ dataset_bundle.py
+│  ├─ evaluation/
+│  │  ├─ metrics.py
+│  │  └─ reporting.py
+│  ├─ features/
+│  │  └─ vectorizer.py
 │  ├─ models/
-│  │  ├─ __init__.py
 │  │  ├─ base_model.py
+│  │  ├─ chained_multioutput_model.py
+│  │  ├─ logistic_regression_model.py
+│  │  ├─ model_factory.py
+│  │  ├─ multinomial_nb_model.py
 │  │  └─ random_forest_model.py
-│  └─ evaluation/
-│     ├─ __init__.py
-│     └─ metrics.py
+│  └─ preprocessing/
+│     ├─ data_loader.py
+│     ├─ splitter.py
+│     └─ text_cleaner.py
 ├─ tests/
-│  └─ test_pipeline.py
-├─ requirements.txt
-└─ README.md
-
+│  ├─ test_model_predictions.py
+│  ├─ test_pipeline.py
+│  └─ test_targets.py
+├─ .gitignore
+├─ README.md
+└─ requirements.txt
+```
 ## Command Line Usage / How to Run
 
-Open a terminal in the project root folder, for example:
-
-```bash
-cd C:\Users\Dylan B\Desktop\E&EAI\CA
+Open a terminal in the project root folder:
 
 ### Install Dependencies
-```text
-pip install -r requriements.txt
+```bash
+pip install -r requirements.txt
 
 ### Run the Main Project
-```text
 python -m src.main_controller
 
 ### Run Tests
-```text
 python -m pytest
 
 ### Optional switch dataset
 to switch dataset, update DATASET_NAME or DATA_PATH in src/config.py then run again:
-```text
+
 python -m src.main_controller
+```
