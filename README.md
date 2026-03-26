@@ -33,7 +33,7 @@ This is implemented using:
 - TF-IDF vectorization
 - a shared `DatasetBundle` object
 - an abstract model interface
-- a smoke test for the pipeline, targets and model predictions
+- automated tests for the pipeline, targets and model predictions
 - a `ChainedMultiOutputModel` strategy
 - model selection via `ModelFactory` (`Random Forest`, `Logistic Regression`, `MultinomialNB`)
 - evaluation using `metrics.py` and `reporting.py`
