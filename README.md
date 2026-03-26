@@ -3,7 +3,7 @@
 # Continuous Assessment 1 - Multi-Label Email Classification
 
 ## Project Overview
-This project implements the architecture for **Continuous Assessment 1** in **Emerging & Evolving AI**.
+This project implements the architecture for **Continuous Assessment 1** in **Engineering & Evaluating AI**.
 
 The goal is to design a modular email classification system using software architecture concepts and an **Extreme Programming (XP)** style of development.
 
