@@ -49,11 +49,7 @@ The project currently uses the datasets provided in the lecturer skeleton/lab ma
 - `Purchasing.csv`
 - `AppGallery.csv`
 
-At the moment, the main implementation is run using:
-
-- `Purchasing.csv`
-  
-`AppGallery.csv` can also be used to demonstrate that the architecture is reusable across datasets with the same structure.
+The implementation can run on either dataset by changing the dataset configuration in `src/config.py`
 
 ### Dataset Structure
 The dataset includes:
@@ -76,10 +72,10 @@ The dataset includes:
   Controls the full pipeline.
 
 - `src/config.py`  
-  Stores shared configuration such as dataset path, column names, test split, and feature settings.
+  Stores shared configuration such as dataset path, column names, test split and feature settings.
 
 - `src/preprocessing/data_loader.py`  
-  Loads the CSV file, cleans the data, handles missing labels, and creates chained targets.
+  Loads the CSV file, cleans the data, handles missing labels and creates chained targets.
 
 - `src/preprocessing/text_cleaner.py`  
   Contains the `clean_text()` function used to normalize the email text.
@@ -125,6 +121,14 @@ The dataset includes:
 
 - `tests/test_targets.py`  
   Tests that chained targets are created correctly.
+
+### Tests
+- `tests/test_pipeline.py`
+Verifies dataset loading and splitting
+- `tests/test_targets.py`
+Verifies chained target creation.
+- `tests/test_model_predictions.py`
+Verifies model training and prediction output structure.
 
 ---
 
@@ -175,15 +179,20 @@ Open a terminal in the project root folder:
 ### Install Dependencies
 ```bash
 pip install -r requirements.txt
+```
 
 ### Run the Main Project
+```bash
 python -m src.main_controller
+```
 
 ### Run Tests
+```bash
 python -m pytest
+```
 
-### Optional switch dataset
-to switch dataset, update DATASET_NAME or DATA_PATH in src/config.py then run again:
-
+### Optional switch dataset/model
+to switch dataset or model, update DATASET_NAME or MODEL_NAME in src/config.py then run again:
+```bash
 python -m src.main_controller
 ```
