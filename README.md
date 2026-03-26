@@ -38,7 +38,7 @@ This is implemented using:
 - model selection via `ModelFactory` (`Random Forest`, `Logistic Regression`, `MultinomialNB`)
 - evaluation using `metrics.py` and `reporting.py`
 
-### Design Choice 1: Chained Multi-Outputs
+### Design Choice 2: Hierarchical Modelling
 This design is documented in the report as a proposed architectural alternative for comparison
 
 ---
@@ -93,34 +93,25 @@ The dataset includes:
   Provides the abstract model interface.
 
 - `src/models/chained_multioutput_model.py`  
-  Implements `BaseModel` by training three chained estimators (t2, t23, t234).
+  Implements the chained multi output strategy
 
 - `src/models/model_factory.py`  
   Selects the base algorithm (RF/LR/NB) and returns the configured chained model.
 
 - `src/models/random_forest_model.py`  
-  Random Forest base model option.
+  Provides the Random Forest base estimator.
 
 - `src/models/logistic_regression_model.py`  
-  Logistic Regression base model option.
+  Provides the Logistic Regression base estimator.
 
 - `src/models/multinomial_nb_model.py`  
-  MultinomialNB base model option.
+  Provides the Multinomial Naive Bayes base estimator.
 
 - `src/evaluation/metrics.py`  
-  Computes accuracy for t2, t23, and t234.
+  Computes evaluation scores.
 
 - `src/evaluation/reporting.py`  
-  Formats and prints the evaluation results.
-
-- `tests/test_pipeline.py`  
-  Smoke test for verifying that the pipeline loads and splits correctly.
-
-- `tests/test_model_predictions.py`  
-  Tests that model prediction outputs are in the expected format.
-
-- `tests/test_targets.py`  
-  Tests that chained targets are created correctly.
+  Formats and prints final results.
 
 ### Tests
 - `tests/test_pipeline.py`
