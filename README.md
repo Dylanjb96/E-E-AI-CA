@@ -29,15 +29,17 @@ The system currently classifies the following chained targets:
 This is implemented using:
 
 - CSV data loading
-- preprocessing and target generation
+- preprocessing and chained target generation
 - TF-IDF vectorization
 - a shared `DatasetBundle` object
 - an abstract model interface
-- evaluation using separate metrics logic
-- a smoke test for the pipeline
+- a smoke test for the pipeline, targets and model predictions
 - a `ChainedMultiOutputModel` strategy
 - model selection via `ModelFactory` (`Random Forest`, `Logistic Regression`, `MultinomialNB`)
 - evaluation using `metrics.py` and `reporting.py`
+
+### Design Choice 1: Chained Multi-Outputs
+This design is documented in the report as a proposed architectural alternative for comparison
 
 ---
 
